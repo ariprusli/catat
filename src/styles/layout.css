@@ -135,14 +135,15 @@
 /* ─── RESPONSIVE ──────────────────────────── */
 @media (max-width: 699px) {
   .sidebar { display: none !important; }
-  .mobile-header { display: flex; }
-  .mobile-nav { display: block; }
-  .main { padding: 16px 16px 100px; max-width: 100%; }
-  .fab { bottom: max(74px, calc(58px + env(safe-area-inset-bottom))); }
+  .mobile-header { display: flex !important; }
+  .mobile-nav { display: block !important; }
+  .main { padding: 16px 16px 100px !important; max-width: 100% !important; }
+  .fab { bottom: 74px !important; }
 }
+
 @media (min-width: 700px) {
   .mobile-header { display: none !important; }
-  .mobile-nav { display: none; }
+  .mobile-nav { display: none !important; }
   .main { padding: 40px 48px 80px; }
   .fab { bottom: 32px; right: calc(50% - 550px + 260px + 20px); }
 }
