@@ -78,7 +78,7 @@ function closeDrawer() {
   document.getElementById('overlay').classList.remove('open')
 }
 
-document.getElementById('fabBtn')?.addEventListener('click', openDrawer)
+document.getElementById('fab')?.addEventListener('click', openDrawer)
 document.getElementById('overlay')?.addEventListener('click', (e) => {
   if (e.target === document.getElementById('overlay')) closeDrawer()
 })
