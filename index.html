@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#0e0e12" media="(prefers-color-scheme: dark)"/>
+  <meta name="theme-color" content="#f5f4f0" media="(prefers-color-scheme: light)"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="description" content="Simple personal finance tracker"/>
+  <title>Catat</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/src/styles/tokens.css"/>
+  <link rel="stylesheet" href="/src/styles/layout.css"/>
+  <link rel="stylesheet" href="/src/styles/components.css"/>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ── SIDEBAR (desktop) ── -->
+  <aside class="sidebar">
+    <div class="s-logo">Cat<em>at</em></div>
+    <nav class="s-nav">
+      <button class="s-item active" data-nav="home">
+        <span class="ico">◎</span> Overview
+      </button>
+      <button class="s-item" data-nav="history">
+        <span class="ico">≡</span> History
+      </button>
+      <button class="s-item" data-nav="budget">
+        <span class="ico">◈</span> Budget
+      </button>
+      <button class="s-item" data-nav="settings">
+        <span class="ico">⊕</span> Categories
+      </button>
+    </nav>
+    <div class="s-bottom">
+      <div class="theme-toggle" id="themeToggle">
+        <span>Dark mode</span>
+        <div class="toggle-switch"><div class="toggle-knob"></div></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MOBILE HEADER ── -->
+  <header class="mobile-header">
+    <div class="mh-logo">Cat<em>at</em></div>
+    <div class="mh-right">
+      <button class="icon-btn" id="themeToggleMobile" title="Toggle theme">☽</button>
+    </div>
+  </header>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- HOME PAGE -->
+    <div class="page active" id="page-home">
+      <div class="month-bar">
+        <div class="month-nav">
+          <button class="mnav-btn" id="prevMonth">‹</button>
+          <div class="month-label" id="monthLabel">—</div>
+          <button class="mnav-btn" id="nextMonth">›</button>
+        </div>
+        <div class="month-sub" id="monthSub"></div>
+      </div>
+      <div class="summary-row">
+        <div class="sum-card income-card">
+          <div class="sum-type"><span class="sum-dot" style="background:var(--inc)"></span>Income</div>
+          <div class="sum-amount inc-amt" id="sumInc">Rp 0</div>
+          <div class="sum-count" id="sumIncCount">0 entries</div>
+        </div>
+        <div class="sum-card expense-card">
+          <div class="sum-type"><span class="sum-dot" style="background:var(--exp)"></span>Expense</div>
+          <div class="sum-amount exp-amt" id="sumExp">Rp 0</div>
+          <div class="sum-count" id="sumExpCount">0 entries</div>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-head">
+          <span class="chart-title">Daily flow</span>
+          <div class="chart-legend">
+            <span class="cleg"><span class="cleg-dot" style="background:var(--inc)"></span>In</span>
+            <span class="cleg"><span class="cleg-dot" style="background:var(--exp)"></span>Out</span>
+          </div>
+        </div>
+        <canvas id="chart"></canvas>
+      </div>
+      <div class="breakdown-wrap">
+        <div class="bd-tabs">
+          <button class="bd-tab active-exp" id="bdTabExp" data-bd="expense">Expense</button>
+          <button class="bd-tab" id="bdTabInc" data-bd="income">Income</button>
+        </div>
+        <div class="bd-list" id="bdList"></div>
+      </div>
+      <div class="tx-section-head">
+        <span class="tx-section-title">Transactions</span>
+        <span class="tx-count-badge" id="txBadge">0</span>
+      </div>
+      <div id="txHome"></div>
+    </div>
+
+    <!-- HISTORY PAGE -->
+    <div class="page" id="page-history">
+      <div class="month-bar">
+        <div class="month-nav">
+          <button class="mnav-btn" id="prevMonth2">‹</button>
+          <div class="month-label" id="monthLabel2">—</div>
+          <button class="mnav-btn" id="nextMonth2">›</button>
+        </div>
+      </div>
+      <div class="tx-section-head">
+        <span class="tx-section-title">All transactions</span>
+        <span class="tx-count-badge" id="txBadge2">0</span>
+      </div>
+      <div id="txHistory"></div>
+    </div>
+
+    <!-- BUDGET PAGE -->
+    <div class="page" id="page-budget">
+      <div class="month-bar">
+        <div class="month-nav">
+          <button class="mnav-btn" id="prevMonth3">‹</button>
+          <div class="month-label" id="monthLabel3">—</div>
+          <button class="mnav-btn" id="nextMonth3">›</button>
+        </div>
+      </div>
+      <p class="budget-intro">Set monthly spending limits per category. Leave blank to skip tracking.</p>
+      <div id="budgetList"></div>
+    </div>
+
+    <!-- SETTINGS PAGE -->
+    <div class="page" id="page-settings">
+      <div class="month-bar">
+        <div style="font-family:'Instrument Serif',serif;font-size:1.5rem;letter-spacing:-0.02em">Categories</div>
+      </div>
+      <div class="settings-section">
+        <div class="settings-title">Expense categories</div>
+        <div class="cat-grid" id="catGridExp"></div>
+        <div class="add-cat-row">
+          <input class="emoji-inp" id="emojiExp" maxlength="2" placeholder="🏷️"/>
+          <input class="add-cat-inp" id="newCatExp" placeholder="Category name…"/>
+          <button class="sm-btn" id="addCatExp">Add</button>
+        </div>
+      </div>
+      <div class="settings-section">
+        <div class="settings-title">Income categories</div>
+        <div class="cat-grid" id="catGridInc"></div>
+        <div class="add-cat-row">
+          <input class="emoji-inp" id="emojiInc" maxlength="2" placeholder="🏷️"/>
+          <input class="add-cat-inp" id="newCatInc" placeholder="Category name…"/>
+          <button class="sm-btn" id="addCatInc">Add</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FAB -->
+<button class="fab" id="fabBtn" aria-label="Add transaction">+</button>
+
+<!-- Mobile nav -->
+<nav class="mobile-nav">
+  <div class="mn-list">
+    <button class="mn-item active" data-nav="home"><span class="mn-ico">◎</span><span class="mn-lbl">Home</span></button>
+    <button class="mn-item" data-nav="history"><span class="mn-ico">≡</span><span class="mn-lbl">History</span></button>
+    <button class="mn-item" data-nav="budget"><span class="mn-ico">◈</span><span class="mn-lbl">Budget</span></button>
+    <button class="mn-item" data-nav="settings"><span class="mn-ico">⊕</span><span class="mn-lbl">Cats</span></button>
+  </div>
+</nav>
+
+<!-- Add Transaction Drawer -->
+<div class="overlay" id="overlay">
+  <div class="drawer">
+    <div class="drawer-handle"></div>
+    <div class="drawer-title">New transaction</div>
+    <div class="type-seg">
+      <button class="type-seg-btn active-exp" id="btn-exp">Expense</button>
+      <button class="type-seg-btn" id="btn-inc">Income</button>
+    </div>
+    <div class="field">
+      <label class="field-label">Amount</label>
+      <div class="amount-wrap">
+        <span class="currency-sym">Rp</span>
+        <input class="field-input amount-inp" id="fAmount" type="number" min="0" placeholder="0" inputmode="decimal"/>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">Note <span style="color:var(--text3)">(optional)</span></label>
+      <input class="field-input" id="fNote" type="text" placeholder="e.g. Lunch at Warteg"/>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Category</label>
+        <select class="field-input" id="fCat"></select>
+      </div>
+      <div class="field">
+        <label class="field-label">Date</label>
+        <input class="field-input" id="fDate" type="date"/>
+      </div>
+    </div>
+    <button class="add-btn" id="addTxBtn">Add transaction</button>
+  </div>
+</div>
+
+<script type="module" src="/src/js/main.js"></script>
+</body>
+</html>

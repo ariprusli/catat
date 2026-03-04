@@ -1,0 +1,61 @@
+/* ─── DESIGN TOKENS ───────────────────────── */
+[data-theme="dark"] {
+  --bg:        #0e0e12;
+  --bg2:       #16161c;
+  --bg3:       #1e1e26;
+  --line:      rgba(255,255,255,0.07);
+  --text:      #eeeef0;
+  --text2:     #888898;
+  --text3:     #4a4a5a;
+  --inc:       #27c281;
+  --exp:       #f05454;
+  --inc-bg:    rgba(39,194,129,0.10);
+  --exp-bg:    rgba(240,84,84,0.10);
+  --pill:      rgba(255,255,255,0.05);
+  --shadow:    0 4px 24px rgba(0,0,0,0.4);
+  --overlay:   rgba(0,0,0,0.6);
+  --scrollbar: #2a2a36;
+}
+
+[data-theme="light"] {
+  --bg:        #f5f4f0;
+  --bg2:       #ffffff;
+  --bg3:       #eceae4;
+  --line:      rgba(0,0,0,0.07);
+  --text:      #1a1a20;
+  --text2:     #6a6a78;
+  --text3:     #b0b0be;
+  --inc:       #1aad70;
+  --exp:       #e03e3e;
+  --inc-bg:    rgba(26,173,112,0.09);
+  --exp-bg:    rgba(224,62,62,0.09);
+  --pill:      rgba(0,0,0,0.04);
+  --shadow:    0 4px 24px rgba(0,0,0,0.08);
+  --overlay:   rgba(0,0,0,0.35);
+  --scrollbar: #dddbd4;
+}
+
+/* ─── BASE RESET ──────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Geist', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.5;
+  transition: background 0.25s, color 0.25s;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 2px; }
