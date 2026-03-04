@@ -134,7 +134,7 @@
 
 /* ─── RESPONSIVE ──────────────────────────── */
 @media (max-width: 699px) {
-  .sidebar { display: none; }
+  .sidebar { display: none !important; }
   .mobile-header { display: flex; }
   .mobile-nav { display: block; }
   .main { padding: 16px 16px 100px; max-width: 100%; }
