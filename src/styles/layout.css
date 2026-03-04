@@ -133,7 +133,7 @@
 .fab:active { transform: scale(0.96); }
 
 /* ─── RESPONSIVE ──────────────────────────── */
-@media (max-width: 699px) {
+/*@media (max-width: 699px) {
   .sidebar { display: none !important; }
   .mobile-header { display: flex !important; }
   .mobile-nav { display: block !important; }
@@ -146,4 +146,4 @@
   .mobile-nav { display: none !important; }
   .main { padding: 40px 48px 80px; }
   .fab { bottom: 32px; right: calc(50% - 550px + 260px + 20px); }
-}
+}*/
