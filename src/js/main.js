@@ -2,6 +2,16 @@ import { state, loadState, saveState, seedIfEmpty, DEFAULT_CATS } from './store.
 import { render, renderBreakdown, updateCatSelect, filtered } from './render.js'
 import { nowYM, shiftYM, catKey } from './utils.js'
 
+function applyLayout() {
+  const mobile = window.innerWidth < 700;
+  document.getElementById('sidebar').style.display      = mobile ? 'none'  : 'flex';
+  document.getElementById('mobileHeader').style.display = mobile ? 'flex'  : 'none';
+  document.getElementById('mobileNav').style.display    = mobile ? 'block' : 'none';
+  document.getElementById('mainContent').style.padding  = mobile ? '16px 16px 100px' : '40px 48px 80px';
+  document.getElementById('fab').style.bottom           = mobile ? '74px' : '32px';
+}
+window.addEventListener('resize', applyLayout);
+
 // Expose helpers for inline event handlers in render.js
 window.__catat__ = { deleteTx, setBudget, deleteCat, DEFAULT_CATS }
 
@@ -11,6 +21,7 @@ seedIfEmpty()
 state.activeMonth = nowYM()
 document.documentElement.setAttribute('data-theme', state.theme)
 updateThemeLabel()
+applyLayout()
 render()
 
 // ─── NAVIGATION ────────────────────────────────────────────────
@@ -159,3 +170,5 @@ function setBdTab(type) {
   document.getElementById('bdTabInc').className  = 'bd-tab' + (type === 'income'  ? ' active-inc' : '')
   renderBreakdown(filtered())
 }
+
+
