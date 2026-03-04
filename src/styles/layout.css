@@ -1,3 +1,26 @@
+/* ─── MOBILE HEADER ───────────────────────── */
+.mobile-header {
+  display: flex;
+  padding: 16px 20px 12px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--bg);
+}
+.mh-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; }
+.mh-logo em { color: var(--inc); font-style: italic; }
+.mh-right { display: flex; gap: 8px; }
+.icon-btn {
+  width: 34px; height: 34px; border-radius: 9px;
+  background: var(--pill); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: var(--text2); transition: all 0.15s;
+}
+.icon-btn:hover { color: var(--text); }
+
 /* ─── SHELL ───────────────────────────────── */
 .shell {
   display: flex;
@@ -8,17 +31,16 @@
 
 /* ─── SIDEBAR ─────────────────────────────── */
 .sidebar {
+  display: none;
   width: 220px;
   flex-shrink: 0;
   padding: 32px 0;
   border-right: 1px solid var(--line);
-  display: flex;
   flex-direction: column;
   position: sticky;
   top: 0;
   height: 100vh;
 }
-
 .s-logo {
   padding: 0 24px 32px;
   font-family: 'Instrument Serif', serif;
@@ -27,7 +49,6 @@
   color: var(--text);
 }
 .s-logo em { color: var(--inc); font-style: italic; }
-
 .s-nav { flex: 1; padding: 0 12px; }
 .s-item {
   display: flex; align-items: center; gap: 10px;
@@ -37,10 +58,8 @@
   transition: all 0.15s; margin-bottom: 2px;
   border: none; background: none; width: 100%; text-align: left;
 }
-.s-item:hover { color: var(--text); background: var(--pill); }
-.s-item.active { color: var(--text); background: var(--pill); }
+.s-item:hover, .s-item.active { color: var(--text); background: var(--pill); }
 .s-item .ico { width: 20px; text-align: center; font-size: 1rem; }
-
 .s-bottom {
   padding: 16px 12px 0;
   border-top: 1px solid var(--line);
@@ -55,8 +74,7 @@
 .theme-toggle:hover { background: var(--pill); color: var(--text); }
 .toggle-switch {
   width: 32px; height: 18px; background: var(--bg3);
-  border-radius: 9px; position: relative;
-  border: 1px solid var(--line);
+  border-radius: 9px; position: relative; border: 1px solid var(--line);
 }
 .toggle-knob {
   position: absolute; top: 2px; left: 2px;
@@ -69,37 +87,17 @@
 .main {
   flex: 1;
   min-width: 0;
-  padding: 32px 40px 60px;
-  max-width: 700px;
+  padding: 16px 16px 100px;
+  max-width: 100%;
 }
 
 /* ─── PAGES ───────────────────────────────── */
 .page { display: none; }
 .page.active { display: block; }
 
-/* ─── MOBILE HEADER ───────────────────────── */
-.mobile-header {
-  display: none;
-  padding: 16px 20px 12px;
-  align-items: center; justify-content: space-between;
-  border-bottom: 1px solid var(--line);
-  position: sticky; top: 0; z-index: 30;
-  background: var(--bg);
-}
-.mh-logo { font-family: 'Instrument Serif', serif; font-size: 1.3rem; }
-.mh-logo em { color: var(--inc); font-style: italic; }
-.mh-right { display: flex; gap: 8px; }
-.icon-btn {
-  width: 34px; height: 34px; border-radius: 9px;
-  background: var(--pill); border: none; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; color: var(--text2); transition: all 0.15s;
-}
-.icon-btn:hover { color: var(--text); }
-
 /* ─── MOBILE NAV ──────────────────────────── */
 .mobile-nav {
-  display: none;
+  display: block;
   position: fixed; bottom: 0; left: 0; right: 0;
   background: var(--bg2);
   border-top: 1px solid var(--line);
@@ -119,7 +117,7 @@
 /* ─── FAB ─────────────────────────────────── */
 .fab {
   position: fixed;
-  bottom: max(80px, calc(60px + env(safe-area-inset-bottom)));
+  bottom: 74px;
   right: 20px;
   width: 52px; height: 52px; border-radius: 16px;
   background: var(--text); border: none; cursor: pointer;
@@ -132,18 +130,11 @@
 .fab:hover { transform: scale(1.05); }
 .fab:active { transform: scale(0.96); }
 
-/* ─── RESPONSIVE ──────────────────────────── */
-/*@media (max-width: 699px) {
-  .sidebar { display: none !important; }
-  .mobile-header { display: flex !important; }
-  .mobile-nav { display: block !important; }
-  .main { padding: 16px 16px 100px !important; max-width: 100% !important; }
-  .fab { bottom: 74px !important; }
-}
-
+/* ─── DESKTOP ─────────────────────────────── */
 @media (min-width: 700px) {
-  .mobile-header { display: none !important; }
-  .mobile-nav { display: none !important; }
-  .main { padding: 40px 48px 80px; }
+  .mobile-header { display: none; }
+  .mobile-nav { display: none; }
+  .sidebar { display: flex; }
+  .main { padding: 40px 48px 80px; max-width: 700px; }
   .fab { bottom: 32px; right: calc(50% - 550px + 260px + 20px); }
-}*/
+}

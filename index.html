@@ -16,24 +16,24 @@
 </head>
 <body>
 
+<!-- ── MOBILE HEADER (outside shell) ── -->
+<header class="mobile-header" id="mobileHeader">
+  <div class="mh-logo">Cat<em>at</em></div>
+  <div class="mh-right">
+    <button class="icon-btn" id="themeToggleMobile" title="Toggle theme">☽</button>
+  </div>
+</header>
+
 <div class="shell">
 
-  <!-- ── SIDEBAR (desktop) ── -->
+  <!-- ── SIDEBAR (desktop only) ── -->
   <aside class="sidebar" id="sidebar">
     <div class="s-logo">Cat<em>at</em></div>
     <nav class="s-nav">
-      <button class="s-item active" data-nav="home">
-        <span class="ico">◎</span> Overview
-      </button>
-      <button class="s-item" data-nav="history">
-        <span class="ico">≡</span> History
-      </button>
-      <button class="s-item" data-nav="budget">
-        <span class="ico">◈</span> Budget
-      </button>
-      <button class="s-item" data-nav="settings">
-        <span class="ico">⊕</span> Categories
-      </button>
+      <button class="s-item active" data-nav="home"><span class="ico">◎</span> Overview</button>
+      <button class="s-item" data-nav="history"><span class="ico">≡</span> History</button>
+      <button class="s-item" data-nav="budget"><span class="ico">◈</span> Budget</button>
+      <button class="s-item" data-nav="settings"><span class="ico">⊕</span> Categories</button>
     </nav>
     <div class="s-bottom">
       <div class="theme-toggle" id="themeToggle">
@@ -42,14 +42,6 @@
       </div>
     </div>
   </aside>
-
-  <!-- ── MOBILE HEADER ── -->
-  <header class="mobile-header" id="mobileHeader">
-    <div class="mh-logo">Cat<em>at</em></div>
-    <div class="mh-right">
-      <button class="icon-btn" id="themeToggleMobile" title="Toggle theme">☽</button>
-    </div>
-  </header>
 
   <!-- ── MAIN ── -->
   <main class="main" id="mainContent">
