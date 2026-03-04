@@ -141,7 +141,7 @@
   .fab { bottom: max(74px, calc(58px + env(safe-area-inset-bottom))); }
 }
 @media (min-width: 700px) {
-  .mobile-header { display: none; }
+  .mobile-header { display: none !important; }
   .mobile-nav { display: none; }
   .main { padding: 40px 48px 80px; }
   .fab { bottom: 32px; right: calc(50% - 550px + 260px + 20px); }
